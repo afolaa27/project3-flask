@@ -22,7 +22,7 @@ class Goals(Model):
 	title : CharField()
 	description : CharField()
 	created_date : DateTimeField(default=datetime.datetime.now)
-	deadline : DateTimeField(required=True)
+	deadline : DateTimeField()
 
 	class Meta:
 		database =DATABASE
@@ -31,7 +31,7 @@ def initialize():
 	DATABASE.connect()
 
 
-	DATABASE.create_tables([User, Dog], safe= True)
+	DATABASE.create_tables([User, Goals], safe= True)
 	print('connected to the DB and tables created')
 
 
