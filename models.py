@@ -18,11 +18,12 @@ class User(UserMixin,Model):
 		database = DATABASE
 
 
-class Goals(Model):
+class Goal(Model):
 	title : CharField()
 	description : CharField()
 	created_date : DateTimeField(default=datetime.datetime.now)
 	deadline : DateTimeField()
+	owner = ForeignKeyField(User, backref='users')
 
 	class Meta:
 		database =DATABASE
@@ -31,7 +32,7 @@ def initialize():
 	DATABASE.connect()
 
 
-	DATABASE.create_tables([User, Goals], safe= True)
+	DATABASE.create_tables([User, Goal], safe=True)
 	print('connected to the DB and tables created')
 
 

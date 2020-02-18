@@ -55,10 +55,6 @@ def after_request(response):
 	g.db.close()
 	return response
 
-@app.route('/', methods=['GET'])
-def test():
-	return jsonify('the test worked')
-
 
 
 if __name__ == '__main__':
