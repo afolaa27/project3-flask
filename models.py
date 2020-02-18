@@ -24,7 +24,7 @@ class Goal(Model):
 	created_date = DateTimeField(default=datetime.datetime.now)
 	deadline = DateTimeField()
 	before_deadline = IntegerField()
-	owner = ForeignKeyField(User, backref='users')
+	owner = ForeignKeyField(User, backref='goals')
 
 	class Meta:
 		database =DATABASE
