@@ -19,10 +19,11 @@ class User(UserMixin,Model):
 
 
 class Goal(Model):
-	title : CharField()
-	description : CharField()
-	created_date : DateTimeField(default=datetime.datetime.now)
-	deadline : DateTimeField()
+	title = CharField()
+	description = CharField()
+	created_date = DateTimeField(default=datetime.datetime.now)
+	deadline = DateTimeField()
+	before_deadline = IntegerField()
 	owner = ForeignKeyField(User, backref='users')
 
 	class Meta:
