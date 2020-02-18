@@ -59,9 +59,32 @@ def login():
 			status=401
 			),401
 
+@users.route('/loggedin', methods=['GET'])
+def get_logged_in_user():
+	if not current_user.is_authenticated:
+		return jsonify(
+			data={},
+			message='No User logged in ',
+			status = 401
+			), 401
+	else : 
+		user_dict = model_to_dict(current_user)
+		user_dict.pop('password')
+		return jsonify(
+			data= user_dict,
+			message= 'this is the current user logged in',
+			status=200
 
+			), 200
 
-
+@users.route('/logout', methods=['GET'])
+def logout():
+	logout_user()
+	return jsonify(
+		data={},
+		message="You've been logged out",
+		status=200
+		),200
 
 
 
