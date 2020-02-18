@@ -61,9 +61,39 @@ def delete_goal(id):
 			data={
 				'error' : 'Forbidden'
 			},
-			message="You canr delete this goal",
+			message="You cant delete this goal",
 			status=403), 403
 
+
+
+@goals.route('/<id>', methods=['PUT'])
+@login_required
+def update_goal(id):
+	payload = request.get_json()
+
+	goal = models.Goal.get_by_id(id)
+
+	if goal.owner.id == current_user.id:
+		if 'title' in payload:
+			goal.title=payload['title']
+		if 'deadline' in payload:
+			goal.deadline = payload['deadline']
+		if 'description' in payload:
+			goal.description = payload['description']
+		if 'before_deadline' in payload:
+			goal.before_deadline = payload['before_deadline']
+		goal.save()
+
+		goal_dict= model_to_dict(goal)
+
+		return jsonify(data=goal_dict,
+			message='Your update was successfull',
+			status=200),200
+	else:
+		return jsonify(
+			data={
+				'error': 'Forbidden'
+			},message='Cant update this goal', status=403),403
 
 
 
