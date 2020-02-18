@@ -35,3 +35,46 @@ def register_user():
 		message='created an account',
 		status=201
 		),201
+
+@users.route('/login', methods=['POST'])
+def login():
+	payload = request.get_json()
+	try:
+		user = models.User.get(models.User.email == payload['email'])
+		user_dict= model_to_dict(user)
+
+		check_password = check_password_hash(user_dict['password'], payload['password'])
+		if check_password:
+			login_user(user)
+			user_dict.pop('password')
+			return jsonify(
+				data=user_dict,
+				message='Logged in',
+				status=200
+				), 200
+	except models.DoesNotExist:
+		return jsonify(
+			data={},
+			message='Email or password is not correct',
+			status=401
+			),401
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
