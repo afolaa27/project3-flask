@@ -38,7 +38,7 @@ def unauthorized():
 		),401
 
 
-CORS(goals, origins=['http://localhost:3000','https://goals-app-react.herokuapp.com'],supports_credentials=True)
+CORS(goals, origins=['http://localhost:3000','https://goals-app-react.herokuapp.com/'],supports_credentials=True)
 CORS(users, origins=['http://localhost:3000','https://goals-app-react.herokuapp.com'], supports_credentials=True)
 
 
