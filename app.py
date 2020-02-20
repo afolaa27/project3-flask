@@ -38,8 +38,8 @@ def unauthorized():
 		),401
 
 
-CORS(goals, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(goals, origins=['http://localhost:3000','https://goals-app-react.herokuapp.com'],supports_credentials=True)
+CORS(users, origins=['http://localhost:3000','https://goals-app-react.herokuapp.com'], supports_credentials=True)
 
 
 app.register_blueprint(goals, url_prefix='/api/v1/goals')
@@ -60,7 +60,7 @@ def after_request(response):
 if 'ON_HEROKU' in os.environ: 
   print('\non heroku!')
   models.initialize()
-  
+
 if __name__ == '__main__':
 	models.initialize()
 	app.run(debug=DEBUG, port=PORT) 
