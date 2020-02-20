@@ -36,7 +36,7 @@ def create_goal():
 @login_required
 def current_user_goals():
 	current_user_goals_dicts = [model_to_dict(goal) for goal in current_user.goals]
-
+	
 	return jsonify(
 		data=current_user_goals_dicts,
 		message=f'Got current user goals {len(current_user_goals_dicts)}',

@@ -87,10 +87,18 @@ def logout():
 		),200
 
 
+# @users.route('/delete', methods=['Delete'])
+# #@login_required
+# def delete_user():
+# 	user_to_delete_goals = models.Goal.select().where(models.Goal.owner == current_user.id)
+# 	user_to_delete = models.User.get_by_id(current_user.id)
 
-
-
-
+# 	user_to_delete_goals.delete_instance()
+	
+# 	print("Heres what we are deleting", user_to_delete_goals)
+# 	return jsonify(
+# 		data={goals},
+# 		)
 
 
 
