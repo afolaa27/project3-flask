@@ -44,7 +44,10 @@ CORS(users, origins=['http://localhost:3000','https://goals-app-react.herokuapp.
 
 app.register_blueprint(goals, url_prefix='/api/v1/goals')
 app.register_blueprint(users, url_prefix='/api/v1/users')
-
+app.config.update(
+  SESSION_COOKIE_SECURE=True,
+  SESSION_COOKIE_SAMESITE='None'
+)
 
 @app.before_request
 def before_request():
